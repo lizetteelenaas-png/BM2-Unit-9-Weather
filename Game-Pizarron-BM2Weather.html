@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📖 Unit 9 Seasons </title>
+<title>📖 Unit 9 Weather </title>
 <style>
   body {
     margin: 0;
@@ -246,10 +246,10 @@
 
 <div class="book" id="book">
   <div class="cover" id="cover">
-    <h1>📖 Unit 9 Seasons </h1>
+    <h1>📖 Unit 9 Weather </h1>
     <p style="color:#2c3e50;">Click to start your creative journey 🎨✨</p>
     <button onclick="openBook()">Start Game</button>
-    <img src="osito.png" alt="teddy bear" class="cover-teddy">
+    <img src="conejito.png" alt="teddy bear" class="cover-teddy">
   </div>
 
   <div class="left-page">
@@ -280,22 +280,22 @@
     <p id="finalMessage" style="color:#2c3e50; font-size:1.2em; margin-bottom:15px;"></p>
     <div class="gallery" id="gallery"></div>
     <button class="play-again" onclick="restartBook()">🔄 Play Again</button>
-    <img src="osito.png" alt="teddy bear" class="final-teddy">
+    <img src="conejito.png" alt="teddy bear" class="final-teddy">
   </div>
 </div>
 
 <script>
 const emotions = [
-  { name: "cloudy", img: "cloudy2.jpg", text: "Click and draw a cloudy. 💛", audio: "cloudy.mp3" },
-  { name: "rainy", img: "rainy2.jpg", text: "Click and draw a rainy. 💙",  audio: "rainy.mp3" },
-  { name: "sunny", img: "sunny2.jpg", text: "Click and draw a sunny. ❤️",  audio: "sunny.mp3" },
-  { name: "windy", img: "windy2.jpg", text: "Click and draw a windy. 💜",  audio: "windy.mp3" },
-  { name: "clouds", img: "clouds2.jpg", text: "Click and draw a clouds. 💚",  audio: "cloud.mp3" },
-  { name: "sun", img: "sun2.jpg", text: "Click and draw a sun. 💙",  audio: "sun.mp3" },
-  { name: "rain", img: "rain2.jpg", text: "Click and draw a rain. 💛",  audio: "rain.mp3" },
-  { name: "unicorn", img: "unicorn2.jpg", text: "Click and draw a unicorn. 💙",  audio: "unicorn.mp3" },
-  { name: "umbrella", img: "umbrella2.jpg", text: "Click and draw a umbrella. 💚",  audio: "umbrella.mp3" },
-  { name: "u", img: "u2.jpg", text: "Click and draw a U. ❤️",  audio: "u.mp3" }
+  { name: "boots", img: "boots2.jpg", text: "Click and draw a boots. 💛", audio: "boots.mp3" },
+  { name: "coat", img: "coat2.jpg", text: "Click and draw a coat. 💙",  audio: "coat.mp3" },
+  { name: "foggy", img: "foggy2.jpg", text: "Click and draw a foggy. ❤️",  audio: "foggy.mp3" },
+  { name: "hot", img: "hot2.jpg", text: "Click and draw a hot. 💜",  audio: "hot.mp3" },
+  { name: "raincoat", img: "raincoat2.jpg", text: "Click and draw a raincoat. 💚",  audio: "raincoat.mp3" },
+  { name: "sunglasses", img: "sunglasses2.jpg", text: "Click and draw a sunglasses. 💙",  audio: "sunglasses.mp3" },
+  { name: "umbrella", img: "umbrella2.jpg", text: "Click and draw a umbrella. 💛",  audio: "umbrella.mp3" },
+  { name: "sunny", img: "sunny2.jpg", text: "Click and draw a sunny. 💙",  audio: "sunny.mp3" },
+  { name: "rainy", img: "rainy2.jpg", text: "Click and draw a rainy. 💚",  audio: "rainy.mp3" },
+  { name: "moon", img: "moon2.jpg", text: "Click and draw a moon. ❤️",  audio: "moon.mp3" }
 ];
 
   function playAudio(src) {
@@ -449,6 +449,7 @@ window.addEventListener("load", () => { showPage(); centerEmotionImage(); });
 </script>
 </body>
 </html>
+
 
 
 
