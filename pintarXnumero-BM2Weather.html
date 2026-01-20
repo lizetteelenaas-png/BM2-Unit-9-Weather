@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> 🎨 Unit 9 Weather </title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: #f5f5f5;
+    }
+
+    /* Pantalla de inicio */
+    #start-screen {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #ff9ac9, #6aa6ff); 
+        color: white;
+        text-align: center;
+        text-shadow: 1px 1px 2px #333;
+    }
+    #start-screen h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    #start-screen h2 {
+        font-size: 24px;
+        font-weight: normal;
+        margin-top: 10px;
+        color: white;
+        text-shadow: 1px 1px 2px #333;
+    }
+
+    /* Paleta de colores */
+    #palette {
+        display: flex;
+		flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px auto;
+    }
+    .color-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 3px solid #333;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+    }
+
+    /* Área de juego */
+    #game-area {
+        display: none;              /* oculto al inicio */
+        min-height: 100vh;          /* ocupa toda la pantalla */
+        width: 100%;
+        max-width: 800px;
+        margin: 20px auto;
+        background: linear-gradient(135deg, #ffe169, #b573ff);
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        text-align: center;
+        color: white;
+    }
+
+    svg {
+        width: 100%;    
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+        margin: auto;   
+       /* display: none;  ocultos al inicio */
+    }
+	.cover-teddy {
+  display: block;
+  margin: 20px auto 0 auto; /* espacio arriba y centrado */
+  width: 250px;
+}
+
+    /* Botones */
+    #restart-btn {
+        margin-top: 20px;
+        padding: 14px 28px;
+        font-size: 20px;
+        cursor: pointer;
+        background: linear-gradient(45deg, #ffe169, #ff9ac9);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transition: transform 0.2s, background 0.3s;
+        display: none; /* oculto al inicio */
+    }
+    #restart-btn:hover {
+        transform: scale(1.05);
+        background: linear-gradient(45deg, #ff9ac9, #ffe169);
+    }
+    #start-btn {
+        padding: 14px 28px;
+        font-size: 20px;
+        cursor: pointer;
+        background: linear-gradient(45deg, #ffe169, #ff9ac9);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transition: transform 0.2s, background 0.3s;
+    }
+
+    /* Mensaje final */
+    #finish-message {
+        display: none;
+        font-size: 24px;
+        color: green;
+        margin-top: 20px;
+        animation: fadeInOut 3s ease;
+    }
+
+    @keyframes fadeInOut {
+      0% {opacity:0;}
+      20% {opacity:1;}
+      80% {opacity:1;}
+      100% {opacity:0;}
+    }
+</style>
+</head>
+<body>
+
+<!-- PANTALLA DE INICIO -->
+<div id="start-screen">
+    <h1>🎨 Unit 9 Weather </h1>
+	<h2> Click and color </h2>
+    <button id="start-btn">Start Game</button>
+	<img src="conejito.png" alt="teddy bear" class="cover-teddy">
+</div>
+	
+<div id="game-area" style="display:none;">
+<h1 id="title" style="display:none;">🎨 Color the Picture</h1>
+
+<!-- PALETA DE COLORES -->
+<div id="palette">
+    <div class="color-btn" data-color="1" style="background:#FE0707;">1</div> 
+    <div class="color-btn" data-color="2" style="background:#33A005;">2</div> 
+    <div class="color-btn" data-color="3" style="background:#F5FD07;">3</div> 
+    <div class="color-btn" data-color="4" style="background:#79019E;">4</div> 
+    <div class="color-btn" data-color="5" style="background:#2EA8FF;">5</div> 
+    <div class="color-btn" data-color="6" style="background:#4D2603;">6</div> 
+    <div class="color-btn" data-color="7" style="background:#9F9D9C;">7</div>
+    <div class="color-btn" data-color="8" style="background:#FEB3DE;">8</div> 
+    <div class="color-btn" data-color="9" style="background:#E66007;">9</div>  
+</div>
+
+<!-- ÁREA DEL JUEGO -->
+    <div id="svg1" class="svg-container">
+	
+	</div>
+	
+	<div id="svg2" class="svg-container">
+		
+	</div>
+	
+	<div id="svg3" class="svg-container">
+
+
+	</div>
+	
+	<!-- Mensaje de felicitación -->
+<div id="finish-message">🎉 ¡EXCELLENT, KEEP IT UP! 🎉</div>
+	
+	<!-- ⭐ Botón reinicio -->
+	<button id="restart-btn">Restart</button>
+	</div>
+<script>
+/* ----------------------
+   VARIABLES BÁSICAS
+-----------------------*/
+
+let currentColor = null;
+const svgs = document.querySelectorAll(".svg-container");
+const restartBtn = document.getElementById("restart-btn");
+
+/* ---------------------------------------------
+⭐ Función para mostrar un dibujo aleatorio
+-------------------------------------------------*/
+function mostrarDibujoAleatorio() {
+    svgs.forEach(svg => svg.style.display = "none");
+    const indice = Math.floor(Math.random() * svgs.length);
+    svgs[indice].style.display = "block";
+}
+
+// ⭐ Resetear todos los dibujos a blanco
+function resetSVGs() {
+    document.querySelectorAll("svg [data-num]").forEach(area => {
+        area.setAttribute("fill", "#FFFFFF");
+        area.style.pointerEvents = "auto";
+    });
+}
+
+/* ----------------------
+   BOTÓN INICIAR
+-----------------------*/
+
+document.getElementById("start-btn").addEventListener("click", () => {
+    document.getElementById("start-screen").style.display = "none";
+    document.getElementById("palette").style.display = "flex";
+    document.getElementById("game-area").style.display = "block";
+    document.getElementById("title").style.display = "block";
+	mostrarDibujoAleatorio(); // ⭐ Mostrar uno al azar
+});
+
+/* ----------------------
+   SELECCIONAR COLOR
+-----------------------*/
+
+document.querySelectorAll(".color-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        currentColor = btn.getAttribute("data-color");
+        document.querySelectorAll(".color-btn").forEach(b => b.style.borderColor = "#333");
+        btn.style.borderColor = "yellow";
+    });
+});
+
+/* ----------------------
+   COLOREAR ÁREAS DEL SVG
+-----------------------*/
+
+function enableSVGPainting() {
+    document.querySelectorAll("svg [data-num]").forEach(area => {
+        area.addEventListener("click", () => {
+            if (!currentColor) return;
+
+            const number = area.getAttribute("data-num");
+
+            if (number === currentColor) {
+                // Obtener color de la paleta
+                const colorBtn = document.querySelector(`.color-btn[data-color='${currentColor}']`);
+                const fillColor = colorBtn.style.background;
+
+                area.setAttribute("fill", fillColor);
+                area.style.pointerEvents = "none"; // evitar recolorear
+				checkIfFinished(); // ⭐ Verificar si ya terminó
+            }
+        });
+    });
+}
+// Activar al cargar
+enableSVGPainting();
+
+// ⭐ Verificar si todas las áreas están coloreadas
+function checkIfFinished() {
+    const areas = document.querySelectorAll("svg [data-num]");
+    const allColored = Array.from(areas).every(a => a.getAttribute("fill") !== null);
+    if (allColored) {
+        terminarJuego();
+    }
+}
+
+// ⭐ Mostrar botón reinicio
+function terminarJuego() {
+    const msg = document.getElementById("finish-message");
+    msg.style.display = "block";
+    restartBtn.style.display = "inline-block";
+    setTimeout(() => {
+        msg.style.display = "none";
+    }, 3000);
+}	
+
+// ⭐ Reinicio del juego
+restartBtn.addEventListener("click", () => {
+    restartBtn.style.display = "none";
+    resetSVGs(); 
+	mostrarDibujoAleatorio();
+	
+});	
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
