@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>🧩 Unit 9 Seasons </title>
+<title>🧩 Unit 9 Weather </title>
 <style>
   :root{
     --accent:#0077b6;
@@ -183,10 +183,10 @@
 
 <!-- Cover -->
 <div class="cover" id="cover">
-  <h1>🧩 Unit 9 Seasons </h1>
+  <h1>🧩 Unit 9 Weather </h1>
   <p>Drag the pieces and complete. </p>
   <button class="btn" onclick="startGame()">Start Game</button>
-  <img src="osito.png" alt="teddy bear" class="cover-teddy">
+  <img src="conejito.png" alt="teddy bear" class="cover-teddy">
 </div>
 
 <!-- Game -->
@@ -213,22 +213,22 @@
   <div id="finalGallery" style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:12px;"></div>
   <div style="margin-top:12px;">
     <button class="btn" onclick="restart()">Play Again</button>
-    <img src="osito.png" alt="teddy bear" class="cover-teddy">
+    <img src="conejito.png" alt="teddy bear" class="cover-teddy">
   </div>
 </div>
 
 <script>
 const emotions = [
-  { name: "cloudy", img: "cloudy4.jpg", audio: "cloudy.mp3" },
-  { name: "rainy", img: "rainy4.jpg", audio: "rainy.mp3" },
-  { name: "sunny", img: "sunny4.jpg", audio: "sunny.mp3" },
-  { name: "windy", img: "windy4.jpg", audio: "windy.mp3" },
-  { name: "cloud", img: "cloud4.jpg", audio: "cloud.mp3" },
-  { name: "sun", img: "sun4.jpg", audio: "sun.mp3" },
-  { name: "rain", img: "rainN.jpg", audio: "rain.mp3" },
-  { name: "unicorn", img: "unicorn4.jpg", audio: "unicorn.mp3" },
-  { name: "umbrella", img: "umbrella.jpg", audio: "umbrella.mp3" },
-  { name: "U", img: "u4.jpg", audio: "u.mp3" }
+  { name: "boots", img: "boots3.jpg", audio: "boots.mp3" },
+  { name: "coat", img: "coat3.jpg", audio: "coat.mp3" },
+  { name: "foggy", img: "foggy3.jpg", audio: "foggy.mp3" },
+  { name: "hot", img: "hot3.jpg", audio: "hot.mp3" },
+  { name: "raincoat", img: "raincoat3.jpg", audio: "raincoat.mp3" },
+  { name: "sunglasses", img: "sunglasses3.jpg", audio: "sunglasses.mp3" },
+  { name: "umbrella", img: "umbrella3.jpg", audio: "umbrella.mp3" },
+  { name: "sunny", img: "sunny3.jpg", audio: "sunny.mp3" },
+  { name: "rainy", img: "rainy3.jpg", audio: "rainy.mp3" },
+  { name: "moon", img: "moon3.jpg", audio: "moon.mp3" }
 ];
 
 const SIZE = 3;
@@ -423,6 +423,7 @@ function shuffle(a){
 </script>
 </body>
 </html>
+
 
 
 
